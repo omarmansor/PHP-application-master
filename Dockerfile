@@ -1,5 +1,1 @@
-From nginx:stable
-
-WORKDIR /website
-
-ADD ./website/. /website
+From devopsedu/webapp
