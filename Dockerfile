@@ -2,6 +2,4 @@ From nginx:stable
 
 WORKDIR /website
 
-COPY . .
-
-EXPOSE 80
+ADD ./website/. /website
