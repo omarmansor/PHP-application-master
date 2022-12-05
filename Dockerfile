@@ -1,2 +1,5 @@
-From devopsedu/webapp
-ADD ./website/. /var/www/html
+From nginx:stable
+
+WORKDIR /website
+
+ADD ./website/. /website
