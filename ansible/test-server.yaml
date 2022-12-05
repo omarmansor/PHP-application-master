@@ -17,7 +17,6 @@
         - git
         - python3
         - docker
-        - docker-compose-plugin
         - openssh-server
 
     - name: Start and Enable the Docker daemon
