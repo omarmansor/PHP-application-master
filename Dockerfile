@@ -1,3 +1,7 @@
 From nginx:stable
-ADD ./website/. /usr/share/nginx/html
+
+WORKDIR /website
+
+COPY . .
+
 EXPOSE 80
