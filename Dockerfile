@@ -1,3 +1,3 @@
-From devopsedu/webapp
-ADD ./website/. /var/www/html
+From nginx:stable
+ADD ./website/. /usr/share/nginx/html
 EXPOSE 80
