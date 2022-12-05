@@ -1,0 +1,49 @@
+---
+- hosts: testservers
+  gather_facts: yes
+  become_user: root
+  become: true
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install git, python3, docker, openssh-server packages on test server(s)
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - git
+        - python3
+        - docker
+        - openssh-server
+
+    - name: Start and Enable the Docker daemon
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+        daemon_reload: true
+    
+    - name: Start and Enable the openssh-server daemon
+      systemd:
+        name: sshd
+        state: started
+        enabled: true
+        daemon_reload: true
+        masked: no
+
+    - name: Install java 11 openjdk on test server(s)
+      command: amazon-linux-extras install -y java-openjdk11
+
+    - name: Set Java HOME
+      lineinfile: dest=~/.bashrc regexp='^JAVA_HOME'>
+                    line="export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64"
+
+    - name: Set JAVA PATH
+      lineinfile: dest=~/.bashrc regexp='^JAVA_HOME'>
+                    line="export PATH=$PATH:$JAVA_HOME/bin"
+
+    - name: Source Bashrc
+      action: shell source ~/.bashrc
