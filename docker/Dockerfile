@@ -1,3 +1,3 @@
 From devopsedu/webapp
 
-ADD ./website/. /usr/share/nginx/html
+ADD ./website/. /var/www/html
