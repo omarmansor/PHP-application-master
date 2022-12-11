@@ -1,19 +1,16 @@
 version: "3.7"
 
 services:
-
   web:
-    image: nginx:1.17
+    image: nginx:latest
     ports:
-      - 80:80
+        - "8080:80"
     volumes:
-      - /website:/var/www/myapp
-      - /docker/site.conf:/etc/nginx/conf.d/site.conf
-    depends_on:
-      - php
-
+        - ./website:/website
+        - ./site.conf:/etc/nginx/conf.d/site.conf
+    links:
+        - php
   php:
-    image: php:7.2-fpm
+    image: php:7-fpm
     volumes:
-      - /website:/var/www/myapp
-      - /docker/php.ini:/usr/local/etc/php/php.ini
+        - ./website:/website
