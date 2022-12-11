@@ -7,7 +7,7 @@ services:
             - "8080:80"
         volumes:
             - ./website:/var/www/myapp
-            - ./site.conf:/etc/nginx/conf.d/site.conf
+            - ./site.conf:/etc/nginx/nginx.conf:ro
         depends_on:
             - php
     php:
