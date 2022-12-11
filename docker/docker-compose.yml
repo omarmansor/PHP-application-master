@@ -7,13 +7,13 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./website:/var/www/myapp
-      - ./site.conf:/etc/nginx/conf.d/site.conf
+      - /php:/var/www/myapp
+      - /site.conf:/etc/nginx/conf.d/site.conf
     depends_on:
       - php
 
   php:
     image: php:7.2-fpm
     volumes:
-      - ./website:/var/www/myapp
-      - ./php.ini:/usr/local/etc/php/php.ini
+      - /php:/var/www/myapp
+      - /php.ini:/usr/local/etc/php/php.ini
