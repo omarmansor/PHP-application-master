@@ -1,3 +1,3 @@
 From devopsedu/webapp
 
-ADD ./website/. /var/www/html
+ADD ./website/. /app
