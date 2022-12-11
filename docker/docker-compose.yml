@@ -6,11 +6,11 @@ services:
         ports:
             - "8080:80"
         volumes:
-            - ./website:/var/www/myapp
+            - ./website:/usr/share/nginx/html/website
             - ./site.conf:/etc/nginx/default.conf
         depends_on:
             - php
     php:
         image: php:7.4-fpm
         volumes:
-            - ./website:/var/www/myapp
+            - ./website:/usr/share/nginx/html/website
