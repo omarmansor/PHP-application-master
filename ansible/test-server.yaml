@@ -16,8 +16,16 @@
         packages:
         - git
         - python3
+        - python3-pip
         - docker
         - openssh-server
+
+    - name: Install docker-compose on test server(s)
+      pip:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - docker-compose
 
     - name: Start and Enable the Docker daemon
       systemd:
