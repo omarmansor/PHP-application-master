@@ -21,8 +21,9 @@
         - openssh-server
 
     - name: Install docker-compose on test server(s)
-      pip3:
+      pip:
         name: "{{ packages }}"
+        executable: pip3.3
       vars:
         packages:
         - docker-compose
