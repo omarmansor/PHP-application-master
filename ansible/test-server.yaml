@@ -23,7 +23,7 @@
     - name: Install docker-compose on test server(s)
       pip:
         name: "{{ packages }}"
-        executable: pip3.3
+        executable: pip3
       vars:
         packages:
         - docker-compose
