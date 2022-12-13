@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo docker ps | xargs sudo docker rm -f
 sudo docker system prune
 sudo docker build -t omarmansor/phpwebsite:$BUILD_NUMBER .
