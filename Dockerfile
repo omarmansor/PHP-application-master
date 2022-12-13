@@ -1,3 +1,4 @@
 From devopsedu/webapp
-
-ADD ./website/. /app
+RUN whoami
+RUN pwd
+COPY ./code/. /usr/share/nginx/html
