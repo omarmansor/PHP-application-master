@@ -1,8 +1,3 @@
-From devopsedu/webapp
-RUN whoami
-RUN pwd
+From richarvey/nginx-php-fpm
+
 COPY ./code/. /var/www/html
-
-
-# COPY ./code/. /usr/share/nginx/html
-# COPY ./site.conf /etc/nginx/conf.d/default.conf
