@@ -1,0 +1,164 @@
+Started by upstream project "push-ansible-configuration" build number 21
+originally caused by:
+ Started by upstream project "scm-checkout" build number 11
+ originally caused by:
+  Started by GitHub push by omarmansor
+Running as SYSTEM
+Building remotely on Test-Server in workspace /home/ec2-user/workspace/deploy-app
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] Done
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/omarmansor/PHP-application-master.git
+ > git init /home/ec2-user/workspace/deploy-app # timeout=10
+Fetching upstream changes from https://github.com/omarmansor/PHP-application-master.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.38.1'
+ > git fetch --tags --force --progress -- https://github.com/omarmansor/PHP-application-master.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/omarmansor/PHP-application-master.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 1c867471bc63ea8ed8d9023409dfda32bab71d14 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 1c867471bc63ea8ed8d9023409dfda32bab71d14 # timeout=10
+Commit message: "try Jobs on Jenkins UI"
+ > git rev-list --no-walk c3240e2642c1fad631319ccdcc219f129c160aa1 # timeout=10
+[deploy-app] $ /bin/sh -xe /tmp/jenkins3501894275011790235.sh
++ docker container ls
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                                      NAMES
+811596cdfd6c   omarmansor/phpwebsite:43   "docker-php-entrypoi…"   7 seconds ago   Up 6 seconds   443/tcp, 9000/tcp, 0.0.0.0:8080->80/tcp, :::8080->80/tcp   webapp
++ for PORT in 8080
+++ awk '{print $1}'
+++ grep 8080
+++ docker container ls '--format={{.ID}}\t{{.Ports}}'
++ ID=811596cdfd6c
++ echo 'Found Container ID: 811596cdfd6c, Stopping and removing it....'
+Found Container ID: 811596cdfd6c, Stopping and removing it....
++ docker container stop 811596cdfd6c
+811596cdfd6c
++ docker container rm 811596cdfd6c
+811596cdfd6c
++ docker stop webapp
+Error response from daemon: No such container: webapp
++ true
++ docker rm webapp
+Error: No such container: webapp
++ true
++ docker build -t omarmansor/phpwebsite:89 .
+Sending build context to Docker daemon  155.1kB
+
+Step 1/2 : From richarvey/nginx-php-fpm
+ ---> 37b166f8069f
+Step 2/2 : COPY ./code/. /var/www/html
+ ---> Using cache
+ ---> 692064894fac
+Successfully built 692064894fac
+Successfully tagged omarmansor/phpwebsite:89
++ docker login -u omarmansor -p ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /home/ec2-user/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker push omarmansor/phpwebsite:89
+The push refers to repository [docker.io/omarmansor/phpwebsite]
+38192c883c23: Preparing
+5f70bf18a086: Preparing
+48adf59b1073: Preparing
+1935e490dc17: Preparing
+1d2fc9ddfe68: Preparing
+a73350bc0f61: Preparing
+59e32ed86036: Preparing
+08535a65c433: Preparing
+8d82d3e6d9fe: Preparing
+4a58d3d95ae0: Preparing
+36815e06f456: Preparing
+55e463e17794: Preparing
+a3cf1085acfd: Preparing
+50b9b5779be2: Preparing
+7361c78e7b9b: Preparing
+8871f4cd4cf6: Preparing
+bb79accb9bed: Preparing
+16b02d6fe5cd: Preparing
+bfdaff3384f3: Preparing
+9815b7bd9e21: Preparing
+8173b77bc5e3: Preparing
+796e4620617b: Preparing
+58f5134fdc11: Preparing
+cea42aa6b955: Preparing
+1552b72a9f73: Preparing
+8471ab236faf: Preparing
+252cacca4ea6: Preparing
+910e60ad72e6: Preparing
+2a503d89f902: Preparing
+e30ed4afcf1b: Preparing
+ff4eff80267c: Preparing
+4fc242d58285: Preparing
+a73350bc0f61: Waiting
+59e32ed86036: Waiting
+08535a65c433: Waiting
+8d82d3e6d9fe: Waiting
+4a58d3d95ae0: Waiting
+36815e06f456: Waiting
+55e463e17794: Waiting
+a3cf1085acfd: Waiting
+50b9b5779be2: Waiting
+7361c78e7b9b: Waiting
+8871f4cd4cf6: Waiting
+bb79accb9bed: Waiting
+16b02d6fe5cd: Waiting
+bfdaff3384f3: Waiting
+9815b7bd9e21: Waiting
+8173b77bc5e3: Waiting
+796e4620617b: Waiting
+58f5134fdc11: Waiting
+cea42aa6b955: Waiting
+1552b72a9f73: Waiting
+8471ab236faf: Waiting
+252cacca4ea6: Waiting
+910e60ad72e6: Waiting
+2a503d89f902: Waiting
+ff4eff80267c: Waiting
+4fc242d58285: Waiting
+e30ed4afcf1b: Waiting
+1935e490dc17: Layer already exists
+48adf59b1073: Layer already exists
+5f70bf18a086: Layer already exists
+1d2fc9ddfe68: Layer already exists
+38192c883c23: Layer already exists
+8d82d3e6d9fe: Layer already exists
+a73350bc0f61: Layer already exists
+08535a65c433: Layer already exists
+59e32ed86036: Layer already exists
+4a58d3d95ae0: Layer already exists
+36815e06f456: Layer already exists
+a3cf1085acfd: Layer already exists
+55e463e17794: Layer already exists
+50b9b5779be2: Layer already exists
+7361c78e7b9b: Layer already exists
+8871f4cd4cf6: Layer already exists
+16b02d6fe5cd: Layer already exists
+bb79accb9bed: Layer already exists
+bfdaff3384f3: Layer already exists
+9815b7bd9e21: Layer already exists
+8173b77bc5e3: Layer already exists
+58f5134fdc11: Layer already exists
+796e4620617b: Layer already exists
+cea42aa6b955: Layer already exists
+1552b72a9f73: Layer already exists
+252cacca4ea6: Layer already exists
+8471ab236faf: Layer already exists
+910e60ad72e6: Layer already exists
+2a503d89f902: Layer already exists
+e30ed4afcf1b: Layer already exists
+4fc242d58285: Layer already exists
+ff4eff80267c: Layer already exists
+89: digest: sha256:0a37f23528d244885689d3ddd63e0f63fa7cbd03aa3ea5fd096eb647b72e3ed4 size: 6987
++ docker run -itd -p 8080:80 --name webapp omarmansor/phpwebsite:89
+373b705c7e304792ac011d14bc72ffe3ba39c49521fa14f974afb8a5876cae1d
+Finished: SUCCESS
